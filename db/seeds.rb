@@ -32,7 +32,7 @@ end
     zip_code: Faker::Address.zip_code,
     city_id: City.all.sample.id
   )
-  new_doctor.specialties = Specialty.all.sample(rand(Specialty.all.length-1))
+  new_doctor.specialties = Specialty.all.sample(rand(Specialty.all.length-1)) #On attribue un nombre aléatoire de spécialités.
 end
 
 100.times do
@@ -40,7 +40,7 @@ end
   Appointment.create!(
     doctor: chosen_doctor,
     patient: Patient.all.sample,
-    city_id: chosen_doctor.city_id,
+    city_id: chosen_doctor.city_id, #Le rdv a lieu dans la ville du docteur.
     date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 100)
   )
 end
